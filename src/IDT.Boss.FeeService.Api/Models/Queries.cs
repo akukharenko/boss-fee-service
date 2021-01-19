@@ -1,7 +1,10 @@
-﻿using IDT.Boss.FeeService.Api.Enums;
+using IDT.Boss.FeeService.Api.Enums;
 
 namespace IDT.Boss.FeeService.Api.Models
 {
+    /// <summary>
+    /// Model with information to search the fee values for distributor.
+    /// </summary>
     public sealed class GetDistributorFeeQuery
     {
         public int DistributorId { get; set; }
@@ -12,6 +15,9 @@ namespace IDT.Boss.FeeService.Api.Models
         public StatesTerritories State { get; set; }
     }
 
+    /// <summary>
+    /// Model with information to search the fee values for retailer.
+    /// </summary>
     public sealed class GetRetailerFeeQuery
     {
         public int RetailerId { get; set; }
@@ -23,6 +29,9 @@ namespace IDT.Boss.FeeService.Api.Models
         public StatesTerritories State { get; set; }
     }
 
+    /// <summary>
+    /// Model to search fee details based on the specific parameters.
+    /// </summary>
     public sealed class GetFeeQuery
     {
         public UserType UserType { get; set; }

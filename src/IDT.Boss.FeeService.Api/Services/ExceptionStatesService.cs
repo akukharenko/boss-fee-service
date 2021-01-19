@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using IDT.Boss.FeeService.Api.Data;
@@ -10,8 +10,24 @@ namespace IDT.Boss.FeeService.Api.Services
 {
     public interface IExceptionStatesService
     {
+        /// <summary>
+        /// Get list of the states with information about exceptions for the channel.
+        /// </summary>
+        /// <param name="channel">Channel (country).</param>
+        /// <returns>Returns the list of the all states in the channels with the details.</returns>
         Task<List<ExceptionState>> GetExceptionStatesByChannelAsync(Channel channel);
+
+        /// <summary>
+        /// Add a new record with information about state to exclude.
+        /// </summary>
+        /// <param name="data">Exception state date to add the record.</param>
+        /// <returns>Returns added record.</returns>
         Task<ExceptionState> AddExceptionStateAsync(ExceptionState data);
+
+        /// <summary>
+        /// Delete specific state from the exceptions.
+        /// </summary>
+        /// <param name="stateId">State id.</param>
         Task DeleteExceptionStateAsync(int stateId);
     }
 
@@ -27,6 +43,7 @@ namespace IDT.Boss.FeeService.Api.Services
             _logger = logger;
         }
 
+        /// <inheritdoc />
         public Task<List<ExceptionState>> GetExceptionStatesByChannelAsync(Channel channel)
         {
             // combine with the all the states and Exception  states info here!
@@ -34,15 +51,21 @@ namespace IDT.Boss.FeeService.Api.Services
             return Task.FromResult(statesData);
         }
 
+        /// <inheritdoc />
         public Task<ExceptionState> AddExceptionStateAsync(ExceptionState data)
         {
+            // TODO: add the record to exception states storage
             return Task.FromResult(data);
         }
 
+        /// <inheritdoc />
         public Task DeleteExceptionStateAsync(int stateId)
         {
+            // TODO: remove the record from exception states storage
             return Task.CompletedTask;
         }
+
+        #region Helpers.
 
         private List<ExceptionState> CollectStatesData(Channel channel)
         {
@@ -68,13 +91,16 @@ namespace IDT.Boss.FeeService.Api.Services
                 result.Add(new ExceptionState
                 {
                     StateId = state.Id,
+                    Code = state.Code,
                     Name = state.Name,
                     Notes = tmp?.Notes,
-                    Enabled = tmp != null && tmp.Enabled
+                    IsExcluded = tmp != null && tmp.IsExcluded
                 });
             }
             
             return result;
         }
+
+        #endregion
     }
 }

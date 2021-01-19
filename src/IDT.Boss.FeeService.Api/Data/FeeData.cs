@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using IDT.Boss.FeeService.Api.Enums;
 using IDT.Boss.FeeService.Api.Models;
 
@@ -18,7 +18,7 @@ namespace IDT.Boss.FeeService.Api.Data
             {
                 Id = 1,
                 LoadFee = 0.7m,
-                DistributorSalesIncentive = -0.1m,
+                DistributorIncentive = -0.1m,
                 RetailerIncentive = new RetailerSalesIncentive {
                     PlatinumIncentive = -0.5m,
                     GoldIncentive = -0.4m,
@@ -34,7 +34,7 @@ namespace IDT.Boss.FeeService.Api.Data
             {
                 Id = 2,
                 LoadFee = 3.0m,
-                DistributorSalesIncentive = 2.0m,
+                DistributorIncentive = 2.0m,
                 RetailerIncentive = new RetailerSalesIncentive {
                     PlatinumIncentive = -0.9m,
                     GoldIncentive = -0.5m,
@@ -55,7 +55,7 @@ namespace IDT.Boss.FeeService.Api.Data
         {
             new DistributorFeeModel
             {
-                Id = 1,
+                DistributorId = 1,
                 LoadFee = 0.7m,
                 DefaultIncentive = -0.1m,
                 OverrideIncentive = 0.0m,
@@ -66,7 +66,7 @@ namespace IDT.Boss.FeeService.Api.Data
             },
             new DistributorFeeModel
             {
-                Id = 2,
+                DistributorId = 2,
                 LoadFee = 0.6m,
                 DefaultIncentive = -0.1m,
                 OverrideIncentive = -0.5m,
@@ -84,7 +84,7 @@ namespace IDT.Boss.FeeService.Api.Data
         {
             new RetailerFeeModel
             {
-                Id = 1,
+                RetailerId = 1,
                 LoadFeeValue = 0.7m,
                 RetailerDefaultIncentive = new RetailerSalesIncentive
                 {
@@ -109,7 +109,7 @@ namespace IDT.Boss.FeeService.Api.Data
             },
             new RetailerFeeModel
             {
-                Id = 2,
+                RetailerId = 2,
                 LoadFeeValue = 0.7m,
                 RetailerDefaultIncentive = new RetailerSalesIncentive
                 {

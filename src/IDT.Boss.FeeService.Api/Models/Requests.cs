@@ -1,4 +1,4 @@
-﻿using IDT.Boss.FeeService.Api.Enums;
+using IDT.Boss.FeeService.Api.Enums;
 
 namespace IDT.Boss.FeeService.Api.Models
 {
@@ -9,8 +9,19 @@ namespace IDT.Boss.FeeService.Api.Models
     /// </summary>
     public sealed class UpdateLoadFeeModel
     {
+        /// <summary>
+        /// Payment type (card type).
+        /// </summary>
         public PaymentType PaymentType { get; set; }
+
+        /// <summary>
+        /// Card payment network.
+        /// </summary>
         public CardPaymentNetwork CardPaymentNetwork { get; set; }
+
+        /// <summary>
+        /// Load fee value to set.
+        /// </summary>
         public decimal LoadFee { get; set; }
     }
 
@@ -19,19 +30,45 @@ namespace IDT.Boss.FeeService.Api.Models
     /// </summary>
     public sealed class UpdateDistributorIncentiveModel
     {
+        /// <summary>
+        /// Channel.
+        /// </summary>
         public Channel Channel { get; set; } // ???
+
+        /// <summary>
+        /// Payment type (card type).
+        /// </summary>
         public PaymentType PaymentType { get; set; }
+
+        /// <summary>
+        /// Card payment network.
+        /// </summary>
         public CardPaymentNetwork CardPaymentNetwork { get; set; }
+
+        /// <summary>
+        /// Sales incentive value to set.
+        /// </summary>
         public decimal Incentive { get; set; }
     }
-    
+
     /// <summary>
     /// Model with data to update the retailers incentives - create or update overrides.
     /// </summary>
     public sealed class UpdateRetailerIncentiveModel
     {
+        /// <summary>
+        /// Channel.
+        /// </summary>
         public Channel Channel { get; set; } // ???
+
+        /// <summary>
+        /// Payment type (card type).
+        /// </summary>
         public PaymentType PaymentType { get; set; }
+
+        /// <summary>
+        /// Card payment network.
+        /// </summary>
         public CardPaymentNetwork CardPaymentNetwork { get; set; }
 
         /// <summary>
@@ -40,17 +77,45 @@ namespace IDT.Boss.FeeService.Api.Models
         public RetailerSalesIncentive Incentives { get; set; }
     }
 
+    /// <summary>
+    /// Model to identify which record with distributor override fee to remove (all the values).
+    /// </summary>
     public sealed class DeleteDistributorIncentiveModel
     {
+        /// <summary>
+        /// Channel.
+        /// </summary>
         public Channel Channel { get; set; } // ???
+
+        /// <summary>
+        /// Payment type (card type).
+        /// </summary>
         public PaymentType PaymentType { get; set; }
+
+        /// <summary>
+        /// Card payment network.
+        /// </summary>
         public CardPaymentNetwork CardPaymentNetwork { get; set; }
     }
 
+    /// <summary>
+    /// Model to identify which record with retailer override fee to remove (all the values).
+    /// </summary>
     public sealed class DeleteRetailerIncentiveModel
     {
+        /// <summary>
+        /// Channel.
+        /// </summary>
         public Channel Channel { get; set; } // ???
+
+        /// <summary>
+        /// Payment type (card type).
+        /// </summary>
         public PaymentType PaymentType { get; set; }
+
+        /// <summary>
+        /// Card payment network.
+        /// </summary>
         public CardPaymentNetwork CardPaymentNetwork { get; set; }
     }
 }

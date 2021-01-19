@@ -1,9 +1,14 @@
-﻿namespace IDT.Boss.FeeService.Api.Models
+namespace IDT.Boss.FeeService.Api.Models
 {
+    // TODO: extend if needed to have information about unit type.
+
+    /// <summary>
+    /// Fee model to use in the external applications.
+    /// </summary>
     public sealed class Fee
     {
         /// <summary>
-        /// Load fee
+        /// Load fee.
         /// </summary>
         public LoadFee LoadFee { get; set; }
 
@@ -13,10 +18,13 @@
         public SalesIncentive SalesIncentive { get; set; }
     }
 
+    /// <summary>
+    /// Load fee model.
+    /// </summary>
     public sealed class LoadFee
     {
         /// <summary>
-        /// Load fee value
+        /// Load fee value.
         /// </summary>
         public double Value { get; set; }
 
@@ -26,10 +34,13 @@
         //public Unit LoadFeeUnit { get; set; }
     }
 
+    /// <summary>
+    /// Sales incentive model.
+    /// </summary>
     public sealed class SalesIncentive
     {
         /// <summary>
-        /// Incentive value
+        /// Incentive value.
         /// </summary>
         public double Value { get; set; }
 

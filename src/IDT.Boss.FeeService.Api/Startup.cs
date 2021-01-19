@@ -1,94 +1,68 @@
+using IDT.Boss.FeeService.Api.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.IO;
-using System.Reflection;
-using System.Text.Json.Serialization;
-using IDT.Boss.FeeService.Api.Services;
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.SwaggerUI;
+using IDT.Boss.FeeService.Api.Infrastructure.Extensions;
+using IDT.Boss.FeeService.Api.Infrastructure.Helpers;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Serilog;
 
 namespace IDT.Boss.FeeService.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        /// <summary>
+        /// Configuration for application loaded from the files.
+        /// </summary>
+        private IConfiguration Configuration { get; }
+
+        /// <summary>
+        /// Environment settings and configuration.
+        /// </summary>
+        private IWebHostEnvironment Environment { get; }
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
+            Environment = environment;
         }
-
-        public IConfiguration Configuration { get; }
-
+        
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers()
-                .AddJsonOptions(options =>
-                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
-
-            services.AddSwaggerGen(c =>
-            {
-                // TODO: add here proper settings for Open API definition
-                c.SwaggerDoc("v1", new OpenApiInfo
-                    {
-                        Title = "Fee Service API",
-                        Version = "v1",
-                        Description =
-                            "Simple service with API for support of the Retailer and Distributor Load Fees and Sales Incentives",
-                        Contact = new OpenApiContact
-                        {
-                            Name = "Andrey Kukharenko",
-                            Email = "andrey.kukharenko@idt.net"
-                        },
-                        License = new OpenApiLicense
-                        {
-                            Name = "Copyright (c) 2021, IDT",
-                            Url = new Uri("http://www.idt.net")
-                        }
-                    }
-                );
-
-                c.EnableAnnotations();
-
-                // Set the comments path for the Swagger JSON and UI.
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
-            });
-
-            // register services
-            services.AddSingleton<IExceptionStatesService, ExceptionStatesService>();
-            services.AddSingleton<IFeesService, FeesService>();
+            services.ConfigureApiService(Configuration, Environment, true);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider apiProvider)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json",
-                    "IDT.Boss.FeeService.Api v1");
-
-                c.DocExpansion(DocExpansion.None);
-            });
+            // configure Swagger UI
+            app.ConfigureSwagger(apiProvider);
 
             app.UseHttpsRedirection();
 
+            // add logger for all requests in the web server
+            app.UseSerilogRequestLogging(options =>
+            {
+                options.EnrichDiagnosticContext = LogHelper.EnrichFromRequest;
+            });
+
+            // Use routing middleware to handle requests to the controllers
             app.UseRouting();
 
             app.UseAuthorization();
 
+            // configure routing
             app.UseEndpoints(endpoints =>
             {
+                // map API controllers here
                 endpoints.MapControllers();
             });
         }

@@ -1,4 +1,4 @@
-﻿using IDT.Boss.FeeService.Api.Enums;
+using IDT.Boss.FeeService.Api.Enums;
 
 namespace IDT.Boss.FeeService.Api.Models
 {
@@ -7,6 +7,9 @@ namespace IDT.Boss.FeeService.Api.Models
     /// </summary>
     public sealed class FeeModel
     {
+        /// <summary>
+        /// Id of the record.
+        /// </summary>
         public int Id { get; set; }
 
         /// <summary>
@@ -32,7 +35,7 @@ namespace IDT.Boss.FeeService.Api.Models
         /// <summary>
         /// Distributor sales incentive.
         /// </summary>
-        public decimal DistributorSalesIncentive { get; set; }
+        public decimal DistributorIncentive { get; set; }
 
         /// <summary>
         /// Retailer sales incentives per VIP level.
@@ -45,25 +48,55 @@ namespace IDT.Boss.FeeService.Api.Models
     /// </summary>
     public sealed class RetailerSalesIncentive
     {
+        /// <summary>
+        /// Incentive for Platinum level.
+        /// </summary>
         public decimal PlatinumIncentive { get; set; }
 
+        /// <summary>
+        /// Incentive for Gold level.
+        /// </summary>
         public decimal GoldIncentive { get; set; }
 
+        /// <summary>
+        /// Incentive for Silver level.
+        /// </summary>
         public decimal SilverIncentive { get; set; }
 
+        /// <summary>
+        /// Incentive for Bronze level.
+        /// </summary>
         public decimal BronzeIncentive { get; set; }
 
+        /// <summary>
+        /// Incentive for no level (default).
+        /// </summary>
         public decimal NoLevelIncentive { get; set; }
     }
 
+    /// <summary>
+    /// Model described fee for distributor.
+    /// </summary>
     public sealed class DistributorFeeModel
     {
-        public int Id { get; set; }
-        
+        /// <summary>
+        /// Distributor id.
+        /// </summary>
+        public int DistributorId { get; set; }
+
+        /// <summary>
+        /// Channel.
+        /// </summary>
         public Channel Channel { get; set; }
 
+        /// <summary>
+        /// Payment type (card type).
+        /// </summary>
         public PaymentType PaymentType { get; set; }
 
+        /// <summary>
+        /// Card network.
+        /// </summary>
         public CardPaymentNetwork CardPaymentNetwork { get; set; }
 
         /// <summary>
@@ -87,9 +120,15 @@ namespace IDT.Boss.FeeService.Api.Models
         public bool IsIncentiveOverridden { get; set; }
     }
 
+    /// <summary>
+    /// Model described fee for retailer.
+    /// </summary>
     public sealed class RetailerFeeModel
     {
-        public int Id { get; set; }
+        /// <summary>
+        /// Retailer id.
+        /// </summary>
+        public int RetailerId { get; set; }
 
         /// <summary>
         /// Channel.

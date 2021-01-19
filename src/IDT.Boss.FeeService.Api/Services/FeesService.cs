@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using IDT.Boss.FeeService.Api.Data;
@@ -52,13 +52,13 @@ namespace IDT.Boss.FeeService.Api.Services
 
         public Task<List<DistributorFeeModel>> GetAllByDistributorAsync(int distributorId)
         {
-            var data = FeeData.DistributorFees.Where(x => x.Id == distributorId).ToList();
+            var data = FeeData.DistributorFees.Where(x => x.DistributorId == distributorId).ToList();
             return Task.FromResult(data);
         }
 
         public Task<List<RetailerFeeModel>> GetAllByRetailerAsync(int retailerId)
         {
-            var data = FeeData.RetailerFees.Where(x => x.Id == retailerId).ToList();
+            var data = FeeData.RetailerFees.Where(x => x.RetailerId == retailerId).ToList();
             return Task.FromResult(data);
         }
 
@@ -83,7 +83,7 @@ namespace IDT.Boss.FeeService.Api.Services
 
             var result =  new DistributorFeeModel
             {
-                Id = distributorId,
+                DistributorId = distributorId,
                 Channel = model.Channel,
                 PaymentType = model.PaymentType,
                 CardPaymentNetwork = model.CardPaymentNetwork,
@@ -100,7 +100,7 @@ namespace IDT.Boss.FeeService.Api.Services
 
             var result = new RetailerFeeModel
             {
-                Id = retailerId,
+                RetailerId = retailerId,
                 Channel = model.Channel,
                 PaymentType = model.PaymentType,
                 CardPaymentNetwork = model.CardPaymentNetwork,

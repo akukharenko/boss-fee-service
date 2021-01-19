@@ -1,4 +1,4 @@
-﻿namespace IDT.Boss.FeeService.Api.Enums
+namespace IDT.Boss.FeeService.Api.Enums
 {
     /// <summary>
     /// Payment type for corresponding fee and\or incentive.
