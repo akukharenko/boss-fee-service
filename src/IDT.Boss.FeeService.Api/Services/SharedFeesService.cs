@@ -8,7 +8,10 @@ using Microsoft.Extensions.Logging;
 
 namespace IDT.Boss.FeeService.Api.Services
 {
-    public interface IFeesService
+    /// <summary>
+    /// Simple shared service to work with fees (default load fees, retailers and distributors incentives).
+    /// </summary>
+    public interface ISharedFeeService
     {
         Task<List<FeeModel>> GetAllDefaultFeesByChannelAsync(Channel channel);
         
@@ -31,14 +34,14 @@ namespace IDT.Boss.FeeService.Api.Services
     // TODO: service can be divided on the 2 separate - for retailers and distributors
 
     /// <summary>
-    /// Simple service to work with fees (default load fees, retailers and distributors incentives).
+    /// Simple shared service to work with fees (default load fees, retailers and distributors incentives).
     /// </summary>
-    public sealed class FeesService : IFeesService
+    public sealed class SharedFeeService : ISharedFeeService
     {
-        private readonly ILogger<FeesService> _logger;
+        private readonly ILogger<SharedFeeService> _logger;
         private readonly IExceptionStatesService _exceptionStatesService;
 
-        public FeesService(ILogger<FeesService> logger, IExceptionStatesService exceptionStatesService)
+        public SharedFeeService(ILogger<SharedFeeService> logger, IExceptionStatesService exceptionStatesService)
         {
             _logger = logger;
             _exceptionStatesService = exceptionStatesService;
@@ -127,17 +130,7 @@ namespace IDT.Boss.FeeService.Api.Services
         {
             // do some stuff to extract proper value for Fees for Distributor
 
-            var result = new Fee
-            {
-                LoadFee = new LoadFee
-                {
-                    Value = 3.0
-                },
-                SalesIncentive = new SalesIncentive
-                {
-                    Value = -0.5
-                }
-            };
+            var result = FeeDataGenerator.GenerateFee();
 
             return Task.FromResult(result);
         }
@@ -146,52 +139,14 @@ namespace IDT.Boss.FeeService.Api.Services
         {
             // do some stuff to extract proper value for Fees for Retailer
 
-            var result = new Fee
-            {
-                LoadFee = new LoadFee
-                {
-                    Value = 2.0
-                },
-                SalesIncentive = new SalesIncentive
-                {
-                    Value = -0.2
-                }
-            };
+            var result = FeeDataGenerator.GenerateFee();
 
             return Task.FromResult(result);
         }
 
         public Task<Fee> GetFeeAsync(GetFeeQuery query)
         {
-            Fee result = null;
-            if (query.UserType == UserType.Distributor)
-            {
-                result = new Fee
-                {
-                    LoadFee = new LoadFee
-                    {
-                        Value = 3.0
-                    },
-                    SalesIncentive = new SalesIncentive
-                    {
-                        Value = -0.5
-                    }
-                };
-            }
-            else if (query.UserType == UserType.Retailer)
-            {
-                result = new Fee
-                {
-                    LoadFee = new LoadFee
-                    {
-                        Value = 2.0
-                    },
-                    SalesIncentive = new SalesIncentive
-                    {
-                        Value = -0.2
-                    }
-                };
-            }
+            var result = FeeDataGenerator.GenerateFee();
 
             return Task.FromResult(result);
         }

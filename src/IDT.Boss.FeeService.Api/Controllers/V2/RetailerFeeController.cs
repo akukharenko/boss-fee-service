@@ -21,11 +21,11 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
     [Produces("application/json")]
     public sealed class RetailerFeeController : ControllerBase
     {
-        private readonly IFeesService _feesService;
+        private readonly IRetailerFeeService _retailerFeeService;
 
-        public RetailerFeeController(IFeesService feesService)
+        public RetailerFeeController(IRetailerFeeService retailerFeeService)
         {
-            _feesService = feesService;
+            _retailerFeeService = retailerFeeService;
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
                 State = state
             };
 
-            var result = await _feesService.GetRetailerFeeAsync(query);
+            var result = await _retailerFeeService.GetRetailerFeeAsync(query);
             return Ok(result);
         }
 
@@ -71,7 +71,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
         [ProducesResponseType(typeof(List<RetailerFeeModel>), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<RetailerFeeModel>>> GetAllByRetailer(int retailerId)
         {
-            var data = await _feesService.GetAllByRetailerAsync(retailerId);
+            var data = await _retailerFeeService.GetAllByRetailerAsync(retailerId);
             return Ok(data);
         }
 
@@ -88,7 +88,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
         public async Task<ActionResult<RetailerFeeModel>> UpdateRetailerIncentive(int retailerId, [FromBody] UpdateRetailerIncentiveModel model)
         {
             // TODO: remove returning result - can be used command in the CQRS implementation
-            var result = await _feesService.UpdateRetailerIncentiveAsync(retailerId, model);
+            var result = await _retailerFeeService.UpdateRetailerIncentiveAsync(retailerId, model);
             return Accepted(result);
         }
 
@@ -104,7 +104,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<ActionResult> DeleteRetailerIncentiveOverride(int retailerId, [FromBody] DeleteRetailerIncentiveModel model)
         {
-            await _feesService.DeleteRetailerIncentiveAsync(retailerId, model);
+            await _retailerFeeService.DeleteRetailerIncentiveAsync(retailerId, model);
             return NoContent();
         }
 
@@ -123,7 +123,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
         public async Task<ActionResult> DeleteRetailerIncentiveOverride(int retailerId, Channel channel,
             PaymentType paymentType, CardPaymentNetwork paymentNetwork)
         {
-            await _feesService.DeleteRetailerIncentiveAsync(retailerId, new DeleteRetailerIncentiveModel
+            await _retailerFeeService.DeleteRetailerIncentiveAsync(retailerId, new DeleteRetailerIncentiveModel
             {
                 Channel = channel,
                 PaymentType = paymentType,

@@ -26,7 +26,7 @@ namespace IDT.Boss.FeeService.Api.Models
         /// <summary>
         /// Load fee value.
         /// </summary>
-        public double Value { get; set; }
+        public decimal Value { get; set; }
 
         /// <summary>
         /// Load fee unit
@@ -42,7 +42,7 @@ namespace IDT.Boss.FeeService.Api.Models
         /// <summary>
         /// Incentive value.
         /// </summary>
-        public double Value { get; set; }
+        public decimal Value { get; set; }
 
         /// <summary>
         /// Incentive unit

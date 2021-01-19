@@ -148,7 +148,7 @@ namespace IDT.Boss.FeeService.Api.Models
         /// <summary>
         /// Load fee value (positive).
         /// </summary>
-        public decimal LoadFeeValue { get; set; }
+        public decimal LoadFee { get; set; }
 
         /// <summary>
         /// Retailer sales incentives per VIP level.

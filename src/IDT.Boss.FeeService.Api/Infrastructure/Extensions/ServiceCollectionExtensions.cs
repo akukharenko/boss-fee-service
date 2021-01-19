@@ -53,7 +53,10 @@ namespace IDT.Boss.FeeService.Api.Infrastructure.Extensions
         private static IServiceCollection AddExternalServices(this IServiceCollection services)
         {
             services.AddSingleton<IExceptionStatesService, ExceptionStatesService>();
-            services.AddSingleton<IFeesService, FeesService>();
+            services.AddSingleton<ISharedFeeService, SharedFeeService>();
+            services.AddSingleton<IRetailerFeeService, RetailerFeeService>();
+            services.AddSingleton<IDistributorFeeService, DistributorFeeService>();
+            services.AddSingleton<IFeeService, Services.FeeService>();
 
             return services;
         }

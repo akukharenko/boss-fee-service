@@ -19,11 +19,11 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
     [Produces("application/json")]
     public sealed class FeeController : ControllerBase
     {
-        private readonly IFeesService _feesService;
+        private readonly IFeeService _feeService;
 
-        public FeeController(IFeesService feesService)
+        public FeeController(IFeeService feeService)
         {
-            _feesService = feesService;
+            _feeService = feeService;
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
         [ProducesResponseType(typeof(List<FeeModel>), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<FeeModel>>> GetAllLoadFees(Channel channel)
         {
-            var data = await _feesService.GetAllDefaultFeesByChannelAsync(channel);
+            var data = await _feeService.GetAllDefaultFeesByChannelAsync(channel);
             return Ok(data);
         }
 
@@ -52,7 +52,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
         public async Task<ActionResult<FeeModel>> UpdateDefaultLoadFee(Channel channel, [FromBody] UpdateLoadFeeModel model)
         {
             // TODO: remove returning result - can be used command in the CQRS implementation
-            var result = await _feesService.UpdateDefaultLoadFeeAsync(channel, model);
+            var result = await _feeService.UpdateDefaultLoadFeeAsync(channel, model);
             return Accepted(result);
         }
 
@@ -87,7 +87,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
                 State = state
             };
 
-            var result = await _feesService.GetFeeAsync(query);
+            var result = await _feeService.GetFeeAsync(query);
             return Ok(result);
         }
     }

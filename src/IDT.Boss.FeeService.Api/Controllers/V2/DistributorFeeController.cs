@@ -21,11 +21,11 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
     [Produces("application/json")]
     public class DistributorFeeController : Controller
     {
-        private readonly IFeesService _feesService;
+        private readonly IDistributorFeeService _distributorFeeService;
 
-        public DistributorFeeController(IFeesService feesService)
+        public DistributorFeeController(IDistributorFeeService distributorFeeService)
         {
-            _feesService = feesService;
+            _distributorFeeService = distributorFeeService;
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
                 State = state
             };
 
-            var result = await _feesService.GetDistributorFeeAsync(query);
+            var result = await _distributorFeeService.GetDistributorFeeAsync(query);
             return Ok(result);
         }
 
@@ -69,7 +69,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
         [ProducesResponseType(typeof(List<DistributorFeeModel>), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<DistributorFeeModel>>> GetAllByDistributor(int distributorId)
         {
-            var data = await _feesService.GetAllByDistributorAsync(distributorId);
+            var data = await _distributorFeeService.GetAllByDistributorAsync(distributorId);
             return Ok(data);
         }
 
@@ -86,7 +86,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
         public async Task<ActionResult<DistributorFeeModel>> UpdateDistributorIncentive(int distributorId, [FromBody] UpdateDistributorIncentiveModel model)
         {
             // TODO: remove returning result - can be used command in the CQRS implementation
-            var result = await _feesService.UpdateDistributorIncentiveAsync(distributorId, model);
+            var result = await _distributorFeeService.UpdateDistributorIncentiveAsync(distributorId, model);
             return Accepted(result);
         }
 
@@ -102,7 +102,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<ActionResult> DeleteDistributorIncentiveOverride(int distributorId, [FromBody] DeleteDistributorIncentiveModel model)
         {
-            await _feesService.DeleteDistributorIncentiveAsync(distributorId, model);
+            await _distributorFeeService.DeleteDistributorIncentiveAsync(distributorId, model);
             return NoContent();
         }
 
@@ -121,7 +121,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
         public async Task<ActionResult> DeleteDistributorIncentiveOverride(int distributorId, Channel channel,
             PaymentType paymentType, CardPaymentNetwork paymentNetwork)
         {
-            await _feesService.DeleteDistributorIncentiveAsync(distributorId, new DeleteDistributorIncentiveModel
+            await _distributorFeeService.DeleteDistributorIncentiveAsync(distributorId, new DeleteDistributorIncentiveModel
             {
                 Channel = channel,
                 PaymentType = paymentType,

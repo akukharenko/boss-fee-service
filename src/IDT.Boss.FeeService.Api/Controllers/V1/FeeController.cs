@@ -19,9 +19,9 @@ namespace IDT.Boss.FeeService.Api.Controllers.V1
     [Produces("application/json")]
     public sealed class FeeController : ControllerBase
     {
-        private readonly IFeesService _feesService;
+        private readonly ISharedFeeService _feesService;
 
-        public FeeController(IFeesService feesService)
+        public FeeController(ISharedFeeService feesService)
         {
             _feesService = feesService;
         }
@@ -71,6 +71,8 @@ namespace IDT.Boss.FeeService.Api.Controllers.V1
 
         #endregion
 
+        #region Update load fee and create incentives for Retailer and Distributor overrides!
+
         /// <summary>
         /// Update default load fee value.
         /// </summary>
@@ -81,14 +83,12 @@ namespace IDT.Boss.FeeService.Api.Controllers.V1
         [HttpPut]
         [Route("default/{channel}")]
         [ProducesResponseType(typeof(FeeModel), StatusCodes.Status202Accepted)]
-        public async Task<ActionResult<FeeModel>> UpdateDefaultLoadFee(Channel channel, [FromBody]UpdateLoadFeeModel model)
+        public async Task<ActionResult<FeeModel>> UpdateDefaultLoadFee(Channel channel, [FromBody] UpdateLoadFeeModel model)
         {
             // TODO: remove returning result - can be used command in the CQRS implementation
             var result = await _feesService.UpdateDefaultLoadFeeAsync(channel, model);
             return Accepted(result);
         }
-
-        #region Update (create) incentives Retailer and Distributor overrides!
 
         /// <summary>
         /// Update fee for specific distributor.
