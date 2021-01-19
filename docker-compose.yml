@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  webapp:
+    container_name: feeserviceapi
+    image: ${DOCKER_REGISTRY-}feeservice
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5050:80"
