@@ -13,12 +13,14 @@ namespace IDT.Boss.FeeService.Api.Services
     /// </summary>
     public interface ISharedFeeService
     {
+        Task<List<LoadFeeModel>> GetAllLoadFeesByChannelAsync(Channel channel);
         Task<List<FeeModel>> GetAllDefaultFeesByChannelAsync(Channel channel);
         
         Task<List<DistributorFeeModel>> GetAllByDistributorAsync(int distributorId);
         Task<List<RetailerFeeModel>> GetAllByRetailerAsync(int retailerId);
         
-        Task<FeeModel> UpdateDefaultLoadFeeAsync(Channel channel, UpdateLoadFeeModel request);
+        Task<FeeModel> UpdateDefaultLoadFeeAsync(Channel channel, UpdateLoadFeeModel model);
+        Task<FeeModel> UpdateDefaultIncentiveAsync(Channel channel, UpdateDefaultIncentiveModel model);
 
         Task<DistributorFeeModel> UpdateDistributorIncentiveAsync(int distributorId, UpdateDistributorIncentiveModel model);
         Task<RetailerFeeModel> UpdateRetailerIncentiveAsync(int retailerId, UpdateRetailerIncentiveModel model);
@@ -46,7 +48,13 @@ namespace IDT.Boss.FeeService.Api.Services
             _logger = logger;
             _exceptionStatesService = exceptionStatesService;
         }
-        
+
+        public Task<List<LoadFeeModel>> GetAllLoadFeesByChannelAsync(Channel channel)
+        {
+            var data = FeeDataGenerator.GenerateLoadFees(channel);
+            return Task.FromResult(data);
+        }
+
         public Task<List<FeeModel>> GetAllDefaultFeesByChannelAsync(Channel channel)
         {
             var data = FeeData.Fees.Where(x => x.Channel == channel).ToList();
@@ -65,16 +73,32 @@ namespace IDT.Boss.FeeService.Api.Services
             return Task.FromResult(data);
         }
 
-        public Task<FeeModel> UpdateDefaultLoadFeeAsync(Channel channel, UpdateLoadFeeModel request)
+        public Task<FeeModel> UpdateDefaultLoadFeeAsync(Channel channel, UpdateLoadFeeModel model)
         {
             // do processing with updates...
 
-            // prepare sample result from request
+            // prepare sample result from model
             var result = new FeeModel
             {
-                PaymentType = request.PaymentType,
-                CardPaymentNetwork = request.CardPaymentNetwork,
-                LoadFee = request.LoadFee
+                PaymentType = model.PaymentType,
+                CardPaymentNetwork = model.CardPaymentNetwork,
+                LoadFee = model.LoadFee
+            };
+
+            return Task.FromResult(result);
+        }
+
+        public Task<FeeModel> UpdateDefaultIncentiveAsync(Channel channel, UpdateDefaultIncentiveModel model)
+        {
+            // do processing with updates the records
+
+            var result = new FeeModel
+            {
+                Channel = channel,
+                PaymentType = model.PaymentType,
+                CardPaymentNetwork = model.CardPaymentNetwork,
+                DistributorIncentive = model.DistributorIncentive,
+                RetailerIncentive = model.RetailerIncentives
             };
 
             return Task.FromResult(result);

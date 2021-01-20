@@ -31,9 +31,22 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
         /// </summary>
         /// <returns>Returns list of the all Load Fees for each case.</returns>
         [HttpGet]
-        [Route("{channel}")]
+        [Route("loadfee/{channel}")]
+        [ProducesResponseType(typeof(List<LoadFeeModel>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<LoadFeeModel>>> GetAllLoadFees(Channel channel)
+        {
+            var data = await _feeService.GetAllLoadFeesByChannelAsync(channel);
+            return Ok(data);
+        }
+
+        /// <summary>
+        /// Get all Load Fees and Incentives for Retailer and Distributor.
+        /// </summary>
+        /// <returns>Returns list of the all Load Fees and Incentives for each case.</returns>
+        [HttpGet]
+        [Route("default/{channel}")]
         [ProducesResponseType(typeof(List<FeeModel>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<FeeModel>>> GetAllLoadFees(Channel channel)
+        public async Task<ActionResult<List<FeeModel>>> GetAllFees(Channel channel)
         {
             var data = await _feeService.GetAllDefaultFeesByChannelAsync(channel);
             return Ok(data);
@@ -53,6 +66,23 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
         {
             // TODO: remove returning result - can be used command in the CQRS implementation
             var result = await _feeService.UpdateDefaultLoadFeeAsync(channel, model);
+            return Accepted(result);
+        }
+
+        /// <summary>
+        /// Update default incentives for Distributor (one value) and Retailer (5 values by levels).
+        /// </summary>
+        /// <param name="channel">Channel (country).</param>
+        /// <param name="model">Model with values for default incentives (distributor and retailer).</param>
+        /// <returns>Returns updated model.</returns>
+        /// <response code="202">Record successfully updated.</response>
+        [HttpPut]
+        [Route("incentives/{channel}")]
+        [ProducesResponseType(typeof(FeeModel), StatusCodes.Status202Accepted)]
+        public async Task<ActionResult<FeeModel>> UpdateDefaultLoadFee(Channel channel, [FromBody] UpdateDefaultIncentiveModel model)
+        {
+            // TODO: remove returning result - can be used command in the CQRS implementation
+            var result = await _feeService.UpdateDefaultIncentiveAsync(channel, model);
             return Accepted(result);
         }
 

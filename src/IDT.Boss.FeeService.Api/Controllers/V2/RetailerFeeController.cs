@@ -9,8 +9,6 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace IDT.Boss.FeeService.Api.Controllers.V2
 {
-    // TODO: move here all the action for retailers (or remove controller)
-
     /// <summary>
     /// Controller to work with fees for retailers.
     /// </summary>

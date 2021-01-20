@@ -12,6 +12,29 @@ namespace IDT.Boss.FeeService.Api.Data
     {
         private static readonly Random Rand = new Random();
 
+        public static List<LoadFeeModel> GenerateLoadFees(Channel channel)
+        {
+            var cardCombinations = CardData.CardsLookups;
+
+            var result = new List<LoadFeeModel>();
+            int index = 1;
+            foreach (var cardCombination in cardCombinations)
+            {
+                result.Add(new LoadFeeModel
+                {
+                    Id = index,
+                    PaymentType = cardCombination.PaymentType,
+                    CardPaymentNetwork = cardCombination.PaymentNetwork,
+                    Channel = channel,
+                    LoadFee = GetRandomValue(false)
+                });
+
+                index++;
+            }
+
+            return result;
+        }
+
         public static List<FeeModel> GenerateFees(Channel channel)
         {
             var cardCombinations = CardData.CardsLookups;

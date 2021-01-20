@@ -26,6 +26,32 @@ namespace IDT.Boss.FeeService.Api.Models
     }
 
     /// <summary>
+    /// Model with values for default incentives (distributor and retailer).
+    /// </summary>
+    public sealed class UpdateDefaultIncentiveModel
+    {
+        /// <summary>
+        /// Payment type (card type).
+        /// </summary>
+        public PaymentType PaymentType { get; set; }
+
+        /// <summary>
+        /// Card payment network.
+        /// </summary>
+        public CardPaymentNetwork CardPaymentNetwork { get; set; }
+
+        /// <summary>
+        /// Distributor sales incentive value to set.
+        /// </summary>
+        public decimal DistributorIncentive { get; set; }
+
+        /// <summary>
+        /// Retailer incentives. All the values in one model for ech level.
+        /// </summary>
+        public RetailerSalesIncentive RetailerIncentives { get; set; }
+    }
+
+    /// <summary>
     /// Model with data to update the distributor incentives - create or update overrides.
     /// </summary>
     public sealed class UpdateDistributorIncentiveModel

@@ -3,6 +3,37 @@ using IDT.Boss.FeeService.Api.Enums;
 namespace IDT.Boss.FeeService.Api.Models
 {
     /// <summary>
+    /// Model with load fee.
+    /// </summary>
+    public sealed class LoadFeeModel
+    {
+        /// <summary>
+        /// Id of the record.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Channel.
+        /// </summary>
+        public Channel Channel { get; set; }
+
+        /// <summary>
+        /// Payment type (CreditCard, DebitCard, Bank).
+        /// </summary>
+        public PaymentType PaymentType { get; set; }
+
+        /// <summary>
+        /// Card payment network.
+        /// </summary>
+        public CardPaymentNetwork CardPaymentNetwork { get; set; }
+
+        /// <summary>
+        /// Load fee value (positive).
+        /// </summary>
+        public decimal LoadFee { get; set; }
+    }
+
+    /// <summary>
     /// Full model with the fee data for specific request - default values.
     /// </summary>
     public sealed class FeeModel
