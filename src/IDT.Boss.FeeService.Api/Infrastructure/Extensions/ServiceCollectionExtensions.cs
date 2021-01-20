@@ -57,6 +57,7 @@ namespace IDT.Boss.FeeService.Api.Infrastructure.Extensions
             services.AddSingleton<IRetailerFeeService, RetailerFeeService>();
             services.AddSingleton<IDistributorFeeService, DistributorFeeService>();
             services.AddSingleton<IFeeService, Services.FeeService>();
+            services.AddSingleton<IReportService, ReportService>();
 
             return services;
         }

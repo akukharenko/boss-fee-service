@@ -60,7 +60,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
         /// <returns>Returns fee model with the data after updates.</returns>
         /// <response code="202">Record successfully updated.</response>
         [HttpPut]
-        [Route("{channel}")]
+        [Route("loadfee/{channel}")]
         [ProducesResponseType(typeof(FeeModel), StatusCodes.Status202Accepted)]
         public async Task<ActionResult<FeeModel>> UpdateDefaultLoadFee(Channel channel, [FromBody] UpdateLoadFeeModel model)
         {
@@ -77,7 +77,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
         /// <returns>Returns updated model.</returns>
         /// <response code="202">Record successfully updated.</response>
         [HttpPut]
-        [Route("incentives/{channel}")]
+        [Route("default/{channel}")]
         [ProducesResponseType(typeof(FeeModel), StatusCodes.Status202Accepted)]
         public async Task<ActionResult<FeeModel>> UpdateDefaultLoadFee(Channel channel, [FromBody] UpdateDefaultIncentiveModel model)
         {

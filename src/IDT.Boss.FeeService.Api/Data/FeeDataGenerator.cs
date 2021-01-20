@@ -155,5 +155,52 @@ namespace IDT.Boss.FeeService.Api.Data
             if (isNegative) return -tmp;
             return tmp;
         }
+
+        public static DistributorReportModel GenerateDistributorReport(Channel channel, int rowCount = 10)
+        {
+            var result = new DistributorReportModel
+            {
+                Items = new List<DistributorReportRow>()
+            };
+            for (var i = 0; i < rowCount; i++)
+            {
+                result.Items.Add(new DistributorReportRow
+                {
+                    DistributorId = i + 1,
+                    PaymentType = PaymentType.DebitCard,
+                    CardPaymentNetwork = CardPaymentNetwork.Mastercard,
+                    LoadFee = GetRandomValue(false),
+                    DefaultIncentive = GetRandomValue(true),
+                    IncentiveOverride = GetRandomValue(true),
+                    UpdatedAt = DateTime.Today.AddDays(-10)
+                });
+            }
+
+            return result;
+        }
+
+        public static RetailerReportModel GenerateRetailerReport(Channel channel, int rowCount = 10)
+        {
+            var result = new RetailerReportModel
+            {
+                Items = new List<RetailerReportRow>()
+            };
+            for (var i = 0; i < rowCount; i++)
+            {
+                result.Items.Add(new RetailerReportRow
+                {
+                    RetailerId = i + 1,
+                    PaymentType = PaymentType.DebitCard,
+                    CardPaymentNetwork = CardPaymentNetwork.Mastercard,
+                    LoadFee = GetRandomValue(false),
+                    DefaultIncentive = GetRandomValue(true),
+                    IncentiveOverride = GetRandomValue(true),
+                    RewardLevel = RewardLevel.Silver,
+                    UpdatedAt = DateTime.Today.AddDays(-10)
+                });
+            }
+
+            return result;
+        }
     }
 }
