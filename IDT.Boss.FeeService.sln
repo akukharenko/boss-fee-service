@@ -1,6 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDT.Boss.FeeService.Api", "src\IDT.Boss.FeeService.Api\IDT.Boss.FeeService.Api.csproj", "{DBCBEC8D-A8D9-4890-A618-4EFB028DB4C3}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IDT.Boss.FeeService.Api", "src\IDT.Boss.FeeService.Api\IDT.Boss.FeeService.Api.csproj", "{DBCBEC8D-A8D9-4890-A618-4EFB028DB4C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5E3385EA-6B11-4D74-A476-0EDF3AB54596}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{BD6A027C-2CD0-48D3-B330-71C972A144A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{5E437B7D-82A7-4026-B08F-169CB53D8F53}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{B8FB127D-85B7-40CA-BAA7-EF541B0E0B31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +23,17 @@ Global
 		{DBCBEC8D-A8D9-4890-A618-4EFB028DB4C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBCBEC8D-A8D9-4890-A618-4EFB028DB4C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBCBEC8D-A8D9-4890-A618-4EFB028DB4C3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DBCBEC8D-A8D9-4890-A618-4EFB028DB4C3} = {BD6A027C-2CD0-48D3-B330-71C972A144A3}
+		{BD6A027C-2CD0-48D3-B330-71C972A144A3} = {5E3385EA-6B11-4D74-A476-0EDF3AB54596}
+		{5E437B7D-82A7-4026-B08F-169CB53D8F53} = {5E3385EA-6B11-4D74-A476-0EDF3AB54596}
+		{B8FB127D-85B7-40CA-BAA7-EF541B0E0B31} = {5E3385EA-6B11-4D74-A476-0EDF3AB54596}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B703144B-F249-48E1-AE96-121D4853940D}
 	EndGlobalSection
 EndGlobal

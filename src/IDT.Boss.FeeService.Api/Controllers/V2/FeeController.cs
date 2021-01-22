@@ -69,22 +69,22 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
             return Accepted(result);
         }
 
-        /// <summary>
-        /// Update default incentives for Distributor (one value) and Retailer (5 values by levels).
-        /// </summary>
-        /// <param name="channel">Channel (country).</param>
-        /// <param name="model">Model with values for default incentives (distributor and retailer).</param>
-        /// <returns>Returns updated model.</returns>
-        /// <response code="202">Record successfully updated.</response>
-        [HttpPut]
-        [Route("default/{channel}")]
-        [ProducesResponseType(typeof(FeeModel), StatusCodes.Status202Accepted)]
-        public async Task<ActionResult<FeeModel>> UpdateDefaultLoadFee(Channel channel, [FromBody] UpdateDefaultIncentiveModel model)
-        {
-            // TODO: remove returning result - can be used command in the CQRS implementation
-            var result = await _feeService.UpdateDefaultIncentiveAsync(channel, model);
-            return Accepted(result);
-        }
+            /// <summary>
+            /// Update default incentives for Distributor (one value) and Retailer (5 values by levels).
+            /// </summary>
+            /// <param name="channel">Channel (country).</param>
+            /// <param name="model">Model with values for default incentives (distributor and retailer).</param>
+            /// <returns>Returns updated model.</returns>
+            /// <response code="202">Record successfully updated.</response>
+            [HttpPut]
+            [Route("default/{channel}")]
+            [ProducesResponseType(typeof(FeeModel), StatusCodes.Status202Accepted)]
+            public async Task<ActionResult<FeeModel>> UpdateDefaultLoadFee(Channel channel, [FromBody] UpdateDefaultIncentiveModel model)
+            {
+                // TODO: remove returning result - can be used command in the CQRS implementation
+                var result = await _feeService.UpdateDefaultIncentiveAsync(channel, model);
+                return Accepted(result);
+            }
 
         /// <summary>
         /// Get fee details for specific user type (retailer ot distributor).

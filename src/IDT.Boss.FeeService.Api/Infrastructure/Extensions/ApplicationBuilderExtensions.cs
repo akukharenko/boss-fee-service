@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
-namespace IDT.Boss.FeeService.Api.Infrastructure.Configuration
+namespace IDT.Boss.FeeService.Api.Infrastructure.Extensions
 {
     public static class ApplicationBuilderExtensions
     {

@@ -13,6 +13,7 @@ namespace IDT.Boss.FeeService.Api.Controllers
     /// </summary>
     [ApiVersion("1.0")]
     [ApiVersion("2.0")]
+    [ApiVersion("3.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     [SwaggerTag("Work with data to build reports about Fees (Load fees, incentives override).")]
@@ -32,7 +33,7 @@ namespace IDT.Boss.FeeService.Api.Controllers
         /// <param name="channel">Channel (country).</param>
         /// <returns>Returns report with the data.</returns>
         [HttpGet]
-        [Route("distributor")]
+        [Route("incentives/distributor")]
         [ProducesResponseType(typeof(DistributorReportModel), StatusCodes.Status200OK)]
         public async Task<ActionResult<DistributorReportModel>> GetDistributorsReport(Channel channel)
         {
@@ -46,7 +47,7 @@ namespace IDT.Boss.FeeService.Api.Controllers
         /// <param name="channel">Channel (country).</param>
         /// <returns>Returns report with the data.</returns>
         [HttpGet]
-        [Route("retailer")]
+        [Route("incentives/retailer")]
         [ProducesResponseType(typeof(RetailerReportModel), StatusCodes.Status200OK)]
         public async Task<ActionResult<RetailerReportModel>> GetRetailersReport(Channel channel)
         {

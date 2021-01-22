@@ -14,6 +14,7 @@ namespace IDT.Boss.FeeService.Api.Controllers
     /// </summary>
     [ApiVersion("1.0")]
     [ApiVersion("2.0")]
+    [ApiVersion("3.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     [SwaggerTag("Work with Exception for fees (states in US).")]
