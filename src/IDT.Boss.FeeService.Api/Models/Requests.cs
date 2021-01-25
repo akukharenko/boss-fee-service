@@ -43,7 +43,7 @@ namespace IDT.Boss.FeeService.Api.Models
         /// <summary>
         /// Distributor sales incentive value to set.
         /// </summary>
-        public decimal DistributorIncentive { get; set; }
+        public decimal? DistributorIncentive { get; set; }
 
         /// <summary>
         /// Retailer incentives. All the values in one model for ech level.

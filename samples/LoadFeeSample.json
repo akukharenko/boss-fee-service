@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "channel": "US",
+    "paymentType": "CreditCard",
+    "cardPaymentNetwork": "AmEx",
+    "loadFee": {
+      "value": 5,
+      "updatedBy": "name",
+      "updatedAt": "2020-01-20"
+    },
+    "createdBy": "",
+    "createdAt": "",
+    "updatedBy": "",
+    "updatedAt": ""
+  },
+  {
+    "id": 2,
+    "channel": "US",
+    "paymentType": "DebitCard",
+    "cardPaymentNetwork": "AmEx",
+    "loadFee": {
+      "value": 5,
+      "updatedBy": "name",
+      "updatedAt": "2020-01-20"
+    },
+    "createdBy": "",
+    "createdAt": "",
+    "updatedBy": "",
+    "updatedAt": ""
+  }
+]

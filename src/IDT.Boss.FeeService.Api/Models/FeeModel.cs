@@ -66,7 +66,7 @@ namespace IDT.Boss.FeeService.Api.Models
         /// <summary>
         /// Distributor sales incentive.
         /// </summary>
-        public decimal DistributorIncentive { get; set; }
+        public decimal? DistributorIncentive { get; set; }
 
         /// <summary>
         /// Retailer sales incentives per VIP level.
@@ -82,27 +82,27 @@ namespace IDT.Boss.FeeService.Api.Models
         /// <summary>
         /// Incentive for Platinum level.
         /// </summary>
-        public decimal PlatinumIncentive { get; set; }
+        public decimal? PlatinumIncentive { get; set; }
 
         /// <summary>
         /// Incentive for Gold level.
         /// </summary>
-        public decimal GoldIncentive { get; set; }
+        public decimal? GoldIncentive { get; set; }
 
         /// <summary>
         /// Incentive for Silver level.
         /// </summary>
-        public decimal SilverIncentive { get; set; }
+        public decimal? SilverIncentive { get; set; }
 
         /// <summary>
         /// Incentive for Bronze level.
         /// </summary>
-        public decimal BronzeIncentive { get; set; }
+        public decimal? BronzeIncentive { get; set; }
 
         /// <summary>
         /// Incentive for no level (default).
         /// </summary>
-        public decimal NoLevelIncentive { get; set; }
+        public decimal? NoLevelIncentive { get; set; }
     }
 
     /// <summary>
@@ -143,7 +143,7 @@ namespace IDT.Boss.FeeService.Api.Models
         /// <summary>
         /// Distributor override incentive
         /// </summary>
-        public decimal OverrideIncentive { get; set; }
+        public decimal? OverrideIncentive { get; set; }
 
         /// <summary>
         /// Is incentive overridden.
@@ -179,7 +179,7 @@ namespace IDT.Boss.FeeService.Api.Models
         /// <summary>
         /// Load fee value (positive).
         /// </summary>
-        public decimal LoadFee { get; set; }
+        public decimal? LoadFee { get; set; }
 
         /// <summary>
         /// Retailer sales incentives per VIP level.

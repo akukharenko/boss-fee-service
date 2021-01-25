@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "paymentType": "CreditCard",
+    "cardPaymentNetwork": "AmEx",
+    "rewardLevel": "Silver",
+    "incentive": {
+      "value": 5,
+      "updatedBy": "",
+      "updatedAt": ""
+    },
+    "createdBy": "",
+    "createdAt": "",
+    "updatedBy": "",
+    "updatedAt": ""
+  },
+  {
+    "id": 1,
+    "paymentType": "CreditCard",
+    "cardPaymentNetwork": "AmEx",
+    "rewardLevel": "Platinum",
+    "incentive": {
+      "value": 10,
+      "updatedBy": "",
+      "updatedAt": ""
+    },
+    "createdBy": "",
+    "createdAt": "",
+    "updatedBy": "",
+    "updatedAt": ""
+  }
+]

@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1,
+    "channel": "US",
+    "paymentType": "CreditCard",
+    "cardPaymentNetwork": "AmEx",
+    "retailerIncentives": {
+      "platinumIncentive": {
+        "value": 1,
+        "updatedBy": "",
+        "updatedAt": ""
+      },
+      "goldIncentive": {
+        "value": 1,
+        "updatedBy": "",
+        "updatedAt": ""
+      },
+      "silverIncentive": {
+        "value": 1,
+        "updatedBy": "",
+        "updatedAt": ""
+      },
+      "bronzeIncentive": {
+        "value": 1,
+        "updatedBy": "",
+        "updatedAt": ""
+      },
+      "noLevelIncentive": {
+        "value": 1,
+        "updatedBy": "",
+        "updatedAt": ""
+      }
+    },
+    "createdBy": "",
+    "createdAt": "",
+    "updatedBy": "",
+    "updatedAt": ""
+  }
+]
