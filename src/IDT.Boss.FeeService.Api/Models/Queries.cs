@@ -13,6 +13,11 @@ namespace IDT.Boss.FeeService.Api.Models
         public CardPaymentNetwork PaymentNetwork { get; set; }
         public Channel Channel { get; set; }
         public StatesTerritories State { get; set; }
+
+        /// <summary>
+        /// Amount to change to calculate fee and incentives.
+        /// </summary>
+        public int Amount { get; set; }
     }
 
     /// <summary>
@@ -27,6 +32,11 @@ namespace IDT.Boss.FeeService.Api.Models
         public RewardLevel RewardLevel { get; set; }
         public Channel Channel { get; set; }
         public StatesTerritories State { get; set; }
+
+        /// <summary>
+        /// Amount to change to calculate fee and incentives.
+        /// </summary>
+        public int Amount { get; set; }
     }
 
     /// <summary>
@@ -42,5 +52,10 @@ namespace IDT.Boss.FeeService.Api.Models
         public RewardLevel RewardLevel { get; set; }
         public Channel Channel { get; set; }
         public StatesTerritories State { get; set; }
+
+        /// <summary>
+        /// Amount to change to calculate fee and incentives.
+        /// </summary>
+        public int Amount { get; set; }
     }
 }

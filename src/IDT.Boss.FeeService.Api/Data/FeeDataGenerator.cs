@@ -133,17 +133,28 @@ namespace IDT.Boss.FeeService.Api.Data
             return result;
         }
 
-        public static Fee GenerateFee()
+        public static Fee GenerateFee(int inAmount)
         {
+            // TODO: update calculation depends on the values how we store it (fee as positive and incentive as negative)
+            var fee = GetRandomValue(false);
+            var incentive = GetRandomValue(true);
+
+            var feeAmount = inAmount/100.0m * fee;
+            var incentiveAmount = inAmount/100.0m * incentive;
+            var amount = inAmount/100.0m + (feeAmount + incentiveAmount);
+
             return new Fee
             {
+                Amount = amount,
                 LoadFee = new LoadFee
                 {
-                    Value = GetRandomValue(false)
+                    Amount = feeAmount,
+                    Percentage = fee
                 },
                 SalesIncentive = new SalesIncentive
                 {
-                    Value = GetRandomValue(true)
+                    Amount = incentiveAmount,
+                    Percentage = incentive
                 }
             };
         }

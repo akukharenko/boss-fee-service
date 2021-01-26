@@ -85,7 +85,7 @@ namespace IDT.Boss.FeeService.Api.Services
 
         public Task<Fee> GetFeeAsync(GetFeeQuery query)
         {
-            var result = FeeDataGenerator.GenerateFee();
+            var result = FeeDataGenerator.GenerateFee(query.Amount);
 
             return Task.FromResult(result);
         }

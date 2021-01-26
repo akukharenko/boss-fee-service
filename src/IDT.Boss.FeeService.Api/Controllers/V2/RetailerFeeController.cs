@@ -36,13 +36,14 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
         /// <param name="rewardLevel">Reward level. If not specified, assumed as NoLevel.</param>
         /// <param name="channel">Channel (country).</param>
         /// <param name="state">State (in case of manual recharge).</param>
+        /// <param name="amount">Amount to calculate fee and incentive and final amount to pay.</param>
         /// <returns>Returns the list of the all fees for distributor.</returns>
         [HttpGet]
         [Route("{retailerId:int}/{feeAction}/{paymentType}/{paymentNetwork}")]
         [ProducesResponseType(typeof(Fee), StatusCodes.Status200OK)]
         public async Task<ActionResult<Fee>> GetRetailerFee(int retailerId, FeeAction feeAction, PaymentType paymentType,
             CardPaymentNetwork paymentNetwork,
-            [FromQuery] RewardLevel rewardLevel, [FromQuery] Channel channel, [FromQuery] StatesTerritories state)
+            [FromQuery] RewardLevel rewardLevel, [FromQuery] Channel channel, [FromQuery] StatesTerritories state, [FromQuery] int amount)
         {
             var query = new GetRetailerFeeQuery
             {
@@ -52,7 +53,8 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
                 PaymentNetwork = paymentNetwork,
                 RewardLevel = rewardLevel,
                 Channel = channel,
-                State = state
+                State = state,
+                Amount = amount
             };
 
             var result = await _retailerFeeService.GetRetailerFeeAsync(query);

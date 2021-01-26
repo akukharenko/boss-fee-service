@@ -154,7 +154,7 @@ namespace IDT.Boss.FeeService.Api.Services
         {
             // do some stuff to extract proper value for Fees for Distributor
 
-            var result = FeeDataGenerator.GenerateFee();
+            var result = FeeDataGenerator.GenerateFee(query.Amount);
 
             return Task.FromResult(result);
         }
@@ -163,14 +163,14 @@ namespace IDT.Boss.FeeService.Api.Services
         {
             // do some stuff to extract proper value for Fees for Retailer
 
-            var result = FeeDataGenerator.GenerateFee();
+            var result = FeeDataGenerator.GenerateFee(query.Amount);
 
             return Task.FromResult(result);
         }
 
         public Task<Fee> GetFeeAsync(GetFeeQuery query)
         {
-            var result = FeeDataGenerator.GenerateFee();
+            var result = FeeDataGenerator.GenerateFee(query.Amount);
 
             return Task.FromResult(result);
         }

@@ -35,13 +35,14 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
         /// <param name="paymentNetwork">Card payment network.</param>
         /// <param name="channel">Channel (country).</param>
         /// <param name="state">State (in case of manual recharge).</param>
+        /// <param name="amount">Amount to calculate fee and incentive and final amount to pay.</param>
         /// <returns>Returns the list of the all fees for distributor.</returns>
         [HttpGet]
         [Route("{distributorId:int}/{feeAction}/{paymentType}/{paymentNetwork}")]
         [ProducesResponseType(typeof(Fee), StatusCodes.Status200OK)]
         public async Task<ActionResult<Fee>> GetDistributorFee(int distributorId, FeeAction feeAction, PaymentType paymentType,
             CardPaymentNetwork paymentNetwork,
-            [FromQuery] Channel channel, [FromQuery] StatesTerritories state)
+            [FromQuery] Channel channel, [FromQuery] StatesTerritories state, [FromQuery] int amount)
         {
             var query = new GetDistributorFeeQuery
             {
@@ -50,7 +51,8 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
                 PaymentType = paymentType,
                 PaymentNetwork = paymentNetwork,
                 Channel = channel,
-                State = state
+                State = state,
+                Amount = amount
             };
 
             var result = await _distributorFeeService.GetDistributorFeeAsync(query);

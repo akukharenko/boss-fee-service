@@ -1,12 +1,15 @@
 namespace IDT.Boss.FeeService.Api.Models
 {
-    // TODO: extend if needed to have information about unit type.
-
     /// <summary>
     /// Fee model to use in the external applications.
     /// </summary>
     public sealed class Fee
     {
+        /// <summary>
+        /// Calculated amount to pay (full with fee and incentive).
+        /// </summary>
+        public decimal Amount { get; set; }
+
         /// <summary>
         /// Load fee.
         /// </summary>
@@ -24,14 +27,14 @@ namespace IDT.Boss.FeeService.Api.Models
     public sealed class LoadFee
     {
         /// <summary>
-        /// Load fee value.
+        /// Load fee calculated value.
         /// </summary>
-        public decimal Value { get; set; }
+        public decimal Amount { get; set; }
 
         /// <summary>
-        /// Load fee unit
+        /// Load fee percentage value.
         /// </summary>
-        //public Unit LoadFeeUnit { get; set; }
+        public decimal Percentage { get; set; }
     }
 
     /// <summary>
@@ -40,13 +43,13 @@ namespace IDT.Boss.FeeService.Api.Models
     public sealed class SalesIncentive
     {
         /// <summary>
-        /// Incentive value.
+        /// Incentive calculated amount.
         /// </summary>
-        public decimal Value { get; set; }
+        public decimal Amount { get; set; }
 
         /// <summary>
-        /// Incentive unit
+        /// Incentive percentage value.
         /// </summary>
-        //public Unit IncentiveUnit { get; set; }
+        public decimal Percentage { get; set; }
     }
 }

@@ -61,7 +61,7 @@ namespace IDT.Boss.FeeService.Api.Services
         {
             // do some stuff to extract proper value for Fees for Retailer
 
-            var result = FeeDataGenerator.GenerateFee();
+            var result = FeeDataGenerator.GenerateFee(query.Amount);
 
             return Task.FromResult(result);
         }
