@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDT.Boss.FeeService.Domain", "src\IDT.Boss.FeeService.Domain\IDT.Boss.FeeService.Domain.csproj", "{980DB35F-174B-4683-91B0-0A043D7AC725}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{6E3F4D63-57C8-49FB-9E47-C4BA73C23836}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDT.Boss.FeeService.SeedTool", "tools\IDT.Boss.FeeService.SeedTool\IDT.Boss.FeeService.SeedTool.csproj", "{B3EAB08A-804D-4E10-9A64-04FD305A2783}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,10 @@ Global
 		{980DB35F-174B-4683-91B0-0A043D7AC725}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{980DB35F-174B-4683-91B0-0A043D7AC725}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{980DB35F-174B-4683-91B0-0A043D7AC725}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3EAB08A-804D-4E10-9A64-04FD305A2783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3EAB08A-804D-4E10-9A64-04FD305A2783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3EAB08A-804D-4E10-9A64-04FD305A2783}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3EAB08A-804D-4E10-9A64-04FD305A2783}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +47,8 @@ Global
 		{5E437B7D-82A7-4026-B08F-169CB53D8F53} = {5E3385EA-6B11-4D74-A476-0EDF3AB54596}
 		{B8FB127D-85B7-40CA-BAA7-EF541B0E0B31} = {5E3385EA-6B11-4D74-A476-0EDF3AB54596}
 		{980DB35F-174B-4683-91B0-0A043D7AC725} = {5E437B7D-82A7-4026-B08F-169CB53D8F53}
+		{6E3F4D63-57C8-49FB-9E47-C4BA73C23836} = {5E3385EA-6B11-4D74-A476-0EDF3AB54596}
+		{B3EAB08A-804D-4E10-9A64-04FD305A2783} = {6E3F4D63-57C8-49FB-9E47-C4BA73C23836}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B703144B-F249-48E1-AE96-121D4853940D}

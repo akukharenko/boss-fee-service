@@ -1,0 +1,18 @@
+﻿{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "IDT.Boss.FeeService.SeedTool": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "FSST_ENVIRONMENT": "Local"
+      }
+    },
+    "IDT.Boss.FeeService.SeedTool-Seed": {
+      "commandName": "Project",
+      "commandLineArgs": "seed",
+      "environmentVariables": {
+        "FSST_ENVIRONMENT": "Local"
+      }
+    }
+  }
+}
