@@ -3,12 +3,16 @@
     "id": 1,
     "name": "California",
     "code": "CA",
-    "channel": "US"
+    "channel": "US",
+    "isExcluded": false,
+    "note": "Some simple text note"
   },
   {
     "id": 2,
     "name": "Colorado",
     "code": "CO",
-    "channel": "US"
+    "channel": "US",
+    "isExcluded": false,
+    "note": "Some simple text note"
   }
 ]

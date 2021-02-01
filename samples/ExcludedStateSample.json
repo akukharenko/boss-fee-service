@@ -1,7 +1,26 @@
 [
   {
     "id": 1,
-    "stateId": 2,
-    "note": "US"
+    "name": "California",
+    "code": "CA",
+    "channel": "US",
+    "isExcluded": false,
+    "note": "Some simple text note",
+    "createdBy": "",
+    "createdAt": "",
+    "updatedBy": "",
+    "updatedAt": ""
+  },
+  {
+    "id": 2,
+    "name": "Colorado",
+    "code": "CO",
+    "channel": "US",
+    "isExcluded": false,
+    "note": "Some simple text note",
+    "createdBy": "",
+    "createdAt": "",
+    "updatedBy": "",
+    "updatedAt": ""
   }
 ]
