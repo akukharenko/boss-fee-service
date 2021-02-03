@@ -6,7 +6,7 @@ namespace IDT.Boss.FeeService.Api.Models
     public sealed class Fee
     {
         /// <summary>
-        /// Calculated amount to pay (full with fee and incentive).
+        /// Calculated amount to pay (full with fee and incentive) (in cents).
         /// </summary>
         public decimal Amount { get; set; }
 
@@ -16,9 +16,9 @@ namespace IDT.Boss.FeeService.Api.Models
         public LoadFee LoadFee { get; set; }
 
         /// <summary>
-        /// Sales incentive. Always a negative in relation to load fee.
+        /// Loads incentive. Always a negative in relation to load fee.
         /// </summary>
-        public SalesIncentive SalesIncentive { get; set; }
+        public LoadIncentive LoadIncentive { get; set; }
     }
 
     /// <summary>
@@ -27,7 +27,7 @@ namespace IDT.Boss.FeeService.Api.Models
     public sealed class LoadFee
     {
         /// <summary>
-        /// Load fee calculated value.
+        /// Load fee calculated value (in cents).
         /// </summary>
         public decimal Amount { get; set; }
 
@@ -38,12 +38,12 @@ namespace IDT.Boss.FeeService.Api.Models
     }
 
     /// <summary>
-    /// Sales incentive model.
+    /// Load incentive model.
     /// </summary>
-    public sealed class SalesIncentive
+    public sealed class LoadIncentive
     {
         /// <summary>
-        /// Incentive calculated amount.
+        /// Incentive calculated amount (in cents).
         /// </summary>
         public decimal Amount { get; set; }
 

@@ -29,13 +29,13 @@ namespace IDT.Boss.FeeService.Api.Controllers.V3
         /// <summary>
         /// Get fee details for specific distributor.
         /// </summary>
-        /// <param name="distributorId">Distributor ir.</param>
+        /// <param name="distributorId">Distributor id (control number).</param>
         /// <param name="feeAction">Specifies charge fee action (auto-recharge or manual recharge (by default)).</param>
         /// <param name="paymentType">Payment type (card type).</param>
         /// <param name="paymentNetwork">Card payment network.</param>
         /// <param name="channel">Channel (country).</param>
         /// <param name="state">State (in case of manual recharge).</param>
-        /// <param name="amount">Amount to calculate fee and incentive and final amount to pay.</param>
+        /// <param name="amount">Amount to calculate fee and incentive and final amount to pay (in cents).</param>
         /// <returns>Returns the list of the all fees for distributor.</returns>
         [HttpGet]
         [Route("{distributorId:int}/fee/{feeAction}/{paymentType}/{paymentNetwork}")]
@@ -60,9 +60,39 @@ namespace IDT.Boss.FeeService.Api.Controllers.V3
         }
 
         /// <summary>
+        /// Get fee details for specific distributor.
+        /// </summary>
+        /// <param name="distributorId">Distributor id (control number)v.</param>
+        /// <param name="feeAction">Specifies charge fee action (auto-recharge or manual recharge (by default)).</param>
+        /// <param name="ccHandle">Credit card handle.</param>
+        /// <param name="channel">Channel (country).</param>
+        /// <param name="state">State (in case of manual recharge).</param>
+        /// <param name="amount">Amount to calculate fee and incentive and final amount to pay.</param>
+        /// <returns>Returns the list of the all fees for distributor.</returns>
+        [HttpGet]
+        [Route("{distributorId:int}/fee/{feeAction}/{ccHandle}")]
+        [ProducesResponseType(typeof(Fee), StatusCodes.Status200OK)]
+        public async Task<ActionResult<Fee>> GetDistributorFee2(int distributorId, FeeAction feeAction, string ccHandle,
+            [FromQuery] Channel channel, [FromQuery] StatesTerritories state, [FromQuery] int amount)
+        {
+            var query = new GetDistributorFeeQuery
+            {
+                DistributorId = distributorId,
+                FeeAction = feeAction,
+                CcHandle = ccHandle,
+                Channel = channel,
+                State = state,
+                Amount = amount
+            };
+
+            var result = await _distributorFeeService.GetDistributorFeeAsync(query);
+            return Ok(result);
+        }
+
+        /// <summary>
         /// Get all fees for specific distributor (included overrides if exists).
         /// </summary>
-        /// <param name="distributorId">Distributor id.</param>
+        /// <param name="distributorId">Distributor id (control number).</param>
         /// <returns>Returns list of fee details for each combination of the payments.</returns>
         [HttpGet]
         [Route("{distributorId:int}/incentives")]
@@ -76,7 +106,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V3
         /// <summary>
         /// Update fee for specific distributor.
         /// </summary>
-        /// <param name="distributorId">Distributor id.</param>
+        /// <param name="distributorId">Distributor id (control number).</param>
         /// <param name="model">Model with information to search proper record to update.</param>
         /// <returns>Returns updated distributor fee model.</returns>
         /// <response code="202">Record successfully updated.</response>
@@ -93,7 +123,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V3
         ///// <summary>
         ///// Delete override for distributor fee.
         ///// </summary>
-        ///// <param name="distributorId">Distributor id.</param>
+        ///// <param name="distributorId">Distributor id (control number).</param>
         ///// <param name="model">Model with information to identify the fe to delete.</param>
         ///// <returns>Returns empty result.</returns>
         ///// <response code="204">Record successfully removed.</response>
@@ -109,7 +139,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V3
         /// <summary>
         /// Delete override for distributor fee.
         /// </summary>
-        /// <param name="distributorId">Distributor id.</param>
+        /// <param name="distributorId">Distributor id (control number).</param>
         /// <param name="channel">Channel (country).</param>
         /// <param name="paymentType">Payment type (card type).</param>
         /// <param name="paymentNetwork">Card payment network.</param>

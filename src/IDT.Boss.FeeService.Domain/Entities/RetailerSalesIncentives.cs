@@ -1,9 +1,9 @@
 ﻿namespace IDT.Boss.FeeService.Domain.Entities
 {
     /// <summary>
-    /// Details for Retailer sales incentives for each level.
+    /// Details for Retailer load incentives for each level.
     /// </summary>
-    public sealed class RetailerSalesIncentives
+    public sealed class RetailerLoadIncentives
     {
         /// <summary>
         /// Incentive for Platinum level.

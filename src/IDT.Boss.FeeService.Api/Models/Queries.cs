@@ -18,6 +18,11 @@ namespace IDT.Boss.FeeService.Api.Models
         /// Amount to change to calculate fee and incentives.
         /// </summary>
         public int Amount { get; set; }
+
+        /// <summary>
+        /// Credit Card handler.
+        /// </summary>
+        public string CcHandle { get; set; }
     }
 
     /// <summary>
@@ -37,6 +42,11 @@ namespace IDT.Boss.FeeService.Api.Models
         /// Amount to change to calculate fee and incentives.
         /// </summary>
         public int Amount { get; set; }
+
+        /// <summary>
+        /// Credit Card handler.
+        /// </summary>
+        public string CcHandle { get; set; }
     }
 
     /// <summary>
@@ -57,5 +67,10 @@ namespace IDT.Boss.FeeService.Api.Models
         /// Amount to change to calculate fee and incentives.
         /// </summary>
         public int Amount { get; set; }
+
+        /// <summary>
+        /// Credit Card handler.
+        /// </summary>
+        public string CcHandle { get; set; }
     }
 }

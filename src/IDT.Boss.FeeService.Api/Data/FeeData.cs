@@ -19,7 +19,7 @@ namespace IDT.Boss.FeeService.Api.Data
                 Id = 1,
                 LoadFee = 0.7m,
                 DistributorIncentive = -0.1m,
-                RetailerIncentive = new RetailerSalesIncentive
+                RetailerLoadIncentives = new RetailerLoadIncentive
                 {
                     PlatinumIncentive = -0.5m,
                     GoldIncentive = -0.4m,
@@ -36,7 +36,7 @@ namespace IDT.Boss.FeeService.Api.Data
                 Id = 2,
                 LoadFee = 3.0m,
                 DistributorIncentive = 2.0m,
-                RetailerIncentive = new RetailerSalesIncentive
+                RetailerLoadIncentives = new RetailerLoadIncentive
                 {
                     PlatinumIncentive = -0.9m,
                     GoldIncentive = -0.5m,
@@ -88,7 +88,7 @@ namespace IDT.Boss.FeeService.Api.Data
             {
                 RetailerId = 1,
                 LoadFee = 0.7m,
-                RetailerDefaultIncentive = new RetailerSalesIncentive
+                RetailerDefaultIncentives = new RetailerLoadIncentive
                 {
                     PlatinumIncentive = -0.5m,
                     GoldIncentive = -0.4m,
@@ -96,7 +96,7 @@ namespace IDT.Boss.FeeService.Api.Data
                     BronzeIncentive = -0.1m,
                     NoLevelIncentive = 0.0m
                 },
-                RetailerIncentiveOverride = new RetailerSalesIncentive
+                RetailerIncentiveOverride = new RetailerLoadIncentive
                 {
                     PlatinumIncentive = -0.5m,
                     GoldIncentive = -0.4m,
@@ -113,7 +113,7 @@ namespace IDT.Boss.FeeService.Api.Data
             {
                 RetailerId = 1,
                 LoadFee = 0.7m,
-                RetailerDefaultIncentive = new RetailerSalesIncentive
+                RetailerDefaultIncentives = new RetailerLoadIncentive
                 {
                     PlatinumIncentive = -0.5m,
                     GoldIncentive = -0.4m,
@@ -121,7 +121,7 @@ namespace IDT.Boss.FeeService.Api.Data
                     BronzeIncentive = -0.1m,
                     NoLevelIncentive = 0.0m
                 },
-                RetailerIncentiveOverride = new RetailerSalesIncentive
+                RetailerIncentiveOverride = new RetailerLoadIncentive
                 {
                     PlatinumIncentive = -0.8m,
                     GoldIncentive = -0.6m,

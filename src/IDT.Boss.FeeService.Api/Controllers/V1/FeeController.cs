@@ -57,7 +57,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V1
         /// <summary>
         /// Get all fees for specific distributor (included overrides if exists).
         /// </summary>
-        /// <param name="distributorId">Distributor id.</param>
+        /// <param name="distributorId">Distributor id (control number).</param>
         /// <returns>Returns list of fee details for each combination of the payments.</returns>
         [HttpGet]
         [Route("distributor/{distributorId:int}")]
@@ -71,7 +71,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V1
         /// <summary>
         /// Get all fees for specific retailer (included overrides if exists).
         /// </summary>
-        /// <param name="retailerId">Retailer id.</param>
+        /// <param name="retailerId">Retailer id (control number).</param>
         /// <returns>Returns list of fee details for each combination of the payments.</returns>
         [HttpGet]
         [Route("retailer/{retailerId:int}")]
@@ -85,7 +85,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V1
         #endregion
 
         #region Update load fee and create incentives for Retailer and Distributor overrides!
-        
+
         /// <summary>
         /// Update default load fee value.
         /// </summary>
@@ -123,7 +123,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V1
         /// <summary>
         /// Update fee for specific distributor.
         /// </summary>
-        /// <param name="distributorId">Distributor id.</param>
+        /// <param name="distributorId">Distributor id (control number).</param>
         /// <param name="model">Model with information to search proper record to update.</param>
         /// <returns>Returns updated distributor fee model.</returns>
         /// <response code="202">Record successfully updated.</response>
@@ -140,7 +140,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V1
         /// <summary>
         /// Update fee for specific retailer.
         /// </summary>
-        /// <param name="retailerId">Retailer id.</param>
+        /// <param name="retailerId">Retailer id (control number).</param>
         /// <param name="model">Model with information to search proper record to update.</param>
         /// <returns>Returns updated distributor fee model.</returns>
         /// <response code="202">Record successfully updated.</response>
@@ -161,7 +161,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V1
         /// <summary>
         /// Delete override for distributor fee.
         /// </summary>
-        /// <param name="distributorId">Distributor id.</param>
+        /// <param name="distributorId">Distributor id (control number).</param>
         /// <param name="model">Model with information to identify the fe to delete.</param>
         /// <returns>Returns empty result.</returns>
         /// <response code="204">Record successfully removed.</response>
@@ -177,7 +177,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V1
         /// <summary>
         /// Delete override for distributor fee.
         /// </summary>
-        /// <param name="distributorId">Distributor id.</param>
+        /// <param name="distributorId">Distributor id (control number).</param>
         /// <param name="channel">Channel (country).</param>
         /// <param name="paymentType">Payment type (card type).</param>
         /// <param name="paymentNetwork">Card payment network.</param>
@@ -201,7 +201,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V1
         /// <summary>
         /// Delete override for distributor fee.
         /// </summary>
-        /// <param name="retailerId">Retailer id.</param>
+        /// <param name="retailerId">Retailer id (control number).</param>
         /// <param name="model">Model with information to identify the fe to delete.</param>
         /// <returns>Returns empty result.</returns>
         /// <response code="204">Record successfully removed.</response>
@@ -217,7 +217,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V1
         /// <summary>
         /// Delete override for retailer fee (all the vales) - reset (return to the default values).
         /// </summary>
-        /// <param name="retailerId">Retailer id.</param>
+        /// <param name="retailerId">Retailer id (control number).</param>
         /// <param name="channel">Channel (country).</param>
         /// <param name="paymentType">Payment type (card type).</param>
         /// <param name="paymentNetwork">Card payment network.</param>
@@ -245,7 +245,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V1
         /// <summary>
         /// Get fee details for specific distributor.
         /// </summary>
-        /// <param name="distributorId">Distributor ir.</param>
+        /// <param name="distributorId">Distributor id (control number).</param>
         /// <param name="feeAction">Specifies charge fee action (auto-recharge or manual recharge (by default)).</param>
         /// <param name="paymentType">Payment type (card type).</param>
         /// <param name="paymentNetwork">Card payment network.</param>
@@ -276,9 +276,39 @@ namespace IDT.Boss.FeeService.Api.Controllers.V1
         }
 
         /// <summary>
+        /// Get fee details for specific distributor.
+        /// </summary>
+        /// <param name="distributorId">Distributor id (control number).</param>
+        /// <param name="feeAction">Specifies charge fee action (auto-recharge or manual recharge (by default)).</param>
+        /// <param name="ccHandle">Credit card handle.</param>
+        /// <param name="channel">Channel (country).</param>
+        /// <param name="state">State (in case of manual recharge).</param>
+        /// <param name="amount">Amount to calculate fee and incentive and final amount to pay.</param>
+        /// <returns>Returns the list of the all fees for distributor.</returns>
+        [HttpGet]
+        [Route("distributor/{distributorId:int}/{feeAction}/{ccHandle}")]
+        [ProducesResponseType(typeof(Fee), StatusCodes.Status200OK)]
+        public async Task<ActionResult<Fee>> GetDistributorFee(int distributorId, FeeAction feeAction, string ccHandle,
+            [FromQuery] Channel channel, [FromQuery] StatesTerritories state, [FromQuery] int amount)
+        {
+            var query = new GetDistributorFeeQuery
+            {
+                DistributorId = distributorId,
+                FeeAction = feeAction,
+                CcHandle = ccHandle,
+                Channel = channel,
+                State = state,
+                Amount = amount
+            };
+
+            var result = await _feesService.GetDistributorFeeAsync(query);
+            return Ok(result);
+        }
+
+        /// <summary>
         /// Get fee details for specific retailer.
         /// </summary>
-        /// <param name="retailerId">Retailer ir.</param>
+        /// <param name="retailerId">Retailer id (control number).</param>
         /// <param name="feeAction">Specifies charge fee action (auto-recharge or manual recharge (by default)).</param>
         /// <param name="paymentType">Payment type (card type).</param>
         /// <param name="paymentNetwork">Card payment network.</param>
@@ -311,10 +341,42 @@ namespace IDT.Boss.FeeService.Api.Controllers.V1
         }
 
         /// <summary>
+        /// Get fee details for specific retailer.
+        /// </summary>
+        /// <param name="retailerId">Retailer id (control number).</param>
+        /// <param name="feeAction">Specifies charge fee action (auto-recharge or manual recharge (by default)).</param>
+        /// <param name="ccHandle">Credit card handle.</param>
+        /// <param name="rewardLevel">Reward level. If not specified, assumed as NoLevel.</param>
+        /// <param name="channel">Channel (country).</param>
+        /// <param name="state">State (in case of manual recharge).</param>
+        /// <param name="amount">Amount to calculate fee and incentive and final amount to pay.</param>
+        /// <returns>Returns the list of the all fees for distributor.</returns>
+        [HttpGet]
+        [Route("retailer/{retailerId:int}/{feeAction}/{ccHandle}")]
+        [ProducesResponseType(typeof(Fee), StatusCodes.Status200OK)]
+        public async Task<ActionResult<Fee>> GetRetailerFee(int retailerId, FeeAction feeAction, string ccHandle,
+            [FromQuery] RewardLevel rewardLevel, [FromQuery] Channel channel, [FromQuery] StatesTerritories state, [FromQuery] int amount)
+        {
+            var query = new GetRetailerFeeQuery
+            {
+                RetailerId = retailerId,
+                FeeAction = feeAction,
+                CcHandle =  ccHandle,
+                RewardLevel = rewardLevel,
+                Channel = channel,
+                State = state,
+                Amount  = amount
+            };
+
+            var result = await _feesService.GetRetailerFeeAsync(query);
+            return Ok(result);
+        }
+
+        /// <summary>
         /// Get fee details for specific user type (retailer ot distributor).
         /// </summary>
         /// <param name="userType">Specifies fee consumer type such as Retailer or Distributor.</param>
-        /// <param name="userId">Retailer or Distributor ir.</param>
+        /// <param name="userId">Retailer or Distributor id (control number).</param>
         /// <param name="feeAction">Specifies charge fee action (auto-recharge or manual recharge (by default)).</param>
         /// <param name="paymentType">Payment type (card type).</param>
         /// <param name="paymentNetwork">Card payment network.</param>
@@ -337,6 +399,40 @@ namespace IDT.Boss.FeeService.Api.Controllers.V1
                 FeeAction = feeAction,
                 PaymentType = paymentType,
                 PaymentNetwork = paymentNetwork,
+                RewardLevel = rewardLevel,
+                Channel = channel,
+                State = state,
+                Amount = amount
+            };
+
+            var result = await _feesService.GetFeeAsync(query);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Get fee details for specific user type (retailer ot distributor).
+        /// </summary>
+        /// <param name="userType">Specifies fee consumer type such as Retailer or Distributor.</param>
+        /// <param name="userId">Retailer or Distributor id (control number).</param>
+        /// <param name="feeAction">Specifies charge fee action (auto-recharge or manual recharge (by default)).</param>
+        /// <param name="ccHandle">Credit card handle.</param>
+        /// <param name="rewardLevel">Reward level. If not specified, assumed as NoLevel.</param>
+        /// <param name="channel">Channel (country).</param>
+        /// <param name="state">State (in case of manual recharge).</param>
+        /// <param name="amount">Amount to calculate fee and incentive and final amount to pay.</param>
+        /// <returns>Returns the list of the all fees for distributor.</returns>
+        [HttpGet]
+        [Route("{userType}/{userId:int}/{feeAction}/{ccHandle}")]
+        [ProducesResponseType(typeof(Fee), StatusCodes.Status200OK)]
+        public async Task<ActionResult<Fee>> GetFee(UserType userType, int userId, FeeAction feeAction, string ccHandle,
+            [FromQuery] RewardLevel rewardLevel, [FromQuery] Channel channel, [FromQuery] StatesTerritories state, [FromQuery] int amount)
+        {
+            var query = new GetFeeQuery
+            {
+                UserType = userType,
+                UserId = userId,
+                FeeAction = feeAction,
+                CcHandle = ccHandle,
                 RewardLevel = rewardLevel,
                 Channel = channel,
                 State = state,

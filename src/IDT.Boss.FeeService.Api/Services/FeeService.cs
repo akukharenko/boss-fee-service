@@ -77,7 +77,7 @@ namespace IDT.Boss.FeeService.Api.Services
                 PaymentType = model.PaymentType,
                 CardPaymentNetwork = model.CardPaymentNetwork,
                 DistributorIncentive = model.DistributorIncentive,
-                RetailerIncentive = model.RetailerIncentives
+                RetailerLoadIncentives = model.RetailerIncentives
             };
 
             return Task.FromResult(result);

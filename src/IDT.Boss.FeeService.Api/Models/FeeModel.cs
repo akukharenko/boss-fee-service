@@ -52,17 +52,17 @@ namespace IDT.Boss.FeeService.Api.Models
         /// Payment type (CreditCard, DebitCard, Bank).
         /// </summary>
         public PaymentType PaymentType { get; set; }
-        
+
         /// <summary>
         /// Card payment network.
         /// </summary>
         public CardPaymentNetwork CardPaymentNetwork { get; set; }
-       
+
         /// <summary>
         /// Load fee value (positive).
         /// </summary>
         public decimal LoadFee { get; set; }
-        
+
         /// <summary>
         /// Distributor sales incentive.
         /// </summary>
@@ -71,13 +71,13 @@ namespace IDT.Boss.FeeService.Api.Models
         /// <summary>
         /// Retailer sales incentives per VIP level.
         /// </summary>
-        public RetailerSalesIncentive RetailerIncentive { get; set; }
+        public RetailerLoadIncentive RetailerLoadIncentives { get; set; }
     }
-    
+
     /// <summary>
-    /// Details for Retailer sales incentives for each level.
+    /// Details for Retailer laod incentives for each level.
     /// </summary>
-    public sealed class RetailerSalesIncentive
+    public sealed class RetailerLoadIncentive
     {
         /// <summary>
         /// Incentive for Platinum level.
@@ -182,14 +182,14 @@ namespace IDT.Boss.FeeService.Api.Models
         public decimal? LoadFee { get; set; }
 
         /// <summary>
-        /// Retailer sales incentives per VIP level.
+        /// Retailer load incentives per VIP level.
         /// </summary>
-        public RetailerSalesIncentive RetailerDefaultIncentive { get; set; }
+        public RetailerLoadIncentive RetailerDefaultIncentives { get; set; }
 
         /// <summary>
-        /// Retailer sales incentives per VIP level - overrides.
+        /// Retailer load incentives per VIP level - overrides.
         /// </summary>
-        public RetailerSalesIncentive RetailerIncentiveOverride { get; set; }
+        public RetailerLoadIncentive RetailerIncentiveOverride { get; set; }
 
         /// <summary>
         /// Is incentive overridden - at least one value.

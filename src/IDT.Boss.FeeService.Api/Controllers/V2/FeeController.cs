@@ -90,7 +90,7 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
         /// Get fee details for specific user type (retailer ot distributor).
         /// </summary>
         /// <param name="userType">Specifies fee consumer type such as Retailer or Distributor.</param>
-        /// <param name="userId">Retailer or Distributor ir.</param>
+        /// <param name="userId">Retailer or Distributor id (control number).</param>
         /// <param name="feeAction">Specifies charge fee action (auto-recharge or manual recharge (by default)).</param>
         /// <param name="paymentType">Payment type (card type).</param>
         /// <param name="paymentNetwork">Card payment network.</param>
@@ -113,6 +113,40 @@ namespace IDT.Boss.FeeService.Api.Controllers.V2
                 FeeAction = feeAction,
                 PaymentType = paymentType,
                 PaymentNetwork = paymentNetwork,
+                RewardLevel = rewardLevel,
+                Channel = channel,
+                State = state,
+                Amount = amount
+            };
+
+            var result = await _feeService.GetFeeAsync(query);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Get fee details for specific user type (retailer ot distributor).
+        /// </summary>
+        /// <param name="userType">Specifies fee consumer type such as Retailer or Distributor.</param>
+        /// <param name="userId">Retailer or Distributor id (control number).</param>
+        /// <param name="feeAction">Specifies charge fee action (auto-recharge or manual recharge (by default)).</param>
+        /// <param name="ccHandle">Credit card handle.</param>
+        /// <param name="rewardLevel">Reward level. If not specified, assumed as NoLevel.</param>
+        /// <param name="channel">Channel (country).</param>
+        /// <param name="state">State (in case of manual recharge).</param>
+        /// <param name="amount">Amount to calculate fee and incentive and final amount to pay.</param>
+        /// <returns>Returns the list of the all fees for distributor.</returns>
+        [HttpGet]
+        [Route("{userType}/{userId:int}/{feeAction}/{ccHandle}")]
+        [ProducesResponseType(typeof(Fee), StatusCodes.Status200OK)]
+        public async Task<ActionResult<Fee>> GetFee(UserType userType, int userId, FeeAction feeAction, string ccHandle,
+            [FromQuery] RewardLevel rewardLevel, [FromQuery] Channel channel, [FromQuery] StatesTerritories state, [FromQuery] int amount)
+        {
+            var query = new GetFeeQuery
+            {
+                UserType = userType,
+                UserId = userId,
+                FeeAction = feeAction,
+                CcHandle = ccHandle,
                 RewardLevel = rewardLevel,
                 Channel = channel,
                 State = state,

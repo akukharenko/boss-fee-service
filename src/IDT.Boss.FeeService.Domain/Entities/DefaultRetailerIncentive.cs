@@ -2,7 +2,7 @@ namespace IDT.Boss.FeeService.Domain.Entities
 {
     public sealed class DefaultRetailerIncentive : BaseEntity
     {
-        public RetailerSalesIncentives RetailerIncentives { get; set; }
+        public RetailerLoadIncentives RetailerIncentives { get; set; }
     }
 
     public sealed class DefaultRetailerIncentiveV2 : BaseEntity

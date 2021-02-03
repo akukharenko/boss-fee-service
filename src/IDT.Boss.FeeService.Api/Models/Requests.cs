@@ -48,7 +48,7 @@ namespace IDT.Boss.FeeService.Api.Models
         /// <summary>
         /// Retailer incentives. All the values in one model for ech level.
         /// </summary>
-        public RetailerSalesIncentive RetailerIncentives { get; set; }
+        public RetailerLoadIncentive RetailerIncentives { get; set; }
     }
 
     /// <summary>
@@ -100,7 +100,7 @@ namespace IDT.Boss.FeeService.Api.Models
         /// <summary>
         /// All the values in one model for ech level.
         /// </summary>
-        public RetailerSalesIncentive Incentives { get; set; }
+        public RetailerLoadIncentive Incentives { get; set; }
     }
 
     /// <summary>

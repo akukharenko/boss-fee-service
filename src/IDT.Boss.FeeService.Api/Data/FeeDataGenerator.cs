@@ -51,7 +51,7 @@ namespace IDT.Boss.FeeService.Api.Data
                     Channel = channel,
                     LoadFee = GetRandomValue(false),
                     DistributorIncentive = GetRandomValue(true),
-                    RetailerIncentive = new RetailerSalesIncentive
+                    RetailerLoadIncentives = new RetailerLoadIncentive
                     {
                         PlatinumIncentive = GetRandomValue(true),
                         GoldIncentive = GetRandomValue(true),
@@ -108,7 +108,7 @@ namespace IDT.Boss.FeeService.Api.Data
                     CardPaymentNetwork = cardCombination.PaymentNetwork,
                     Channel = channel,
                     LoadFee = GetRandomValue(false),
-                    RetailerDefaultIncentive = new RetailerSalesIncentive
+                    RetailerDefaultIncentives = new RetailerLoadIncentive
                     {
                         PlatinumIncentive = GetRandomValue(true),
                         GoldIncentive = GetRandomValue(true),
@@ -116,7 +116,7 @@ namespace IDT.Boss.FeeService.Api.Data
                         BronzeIncentive = GetRandomValue(true),
                         NoLevelIncentive = GetRandomValue(true)
                     },
-                    RetailerIncentiveOverride = new RetailerSalesIncentive
+                    RetailerIncentiveOverride = new RetailerLoadIncentive
                     {
                         PlatinumIncentive = GetRandomValue(true),
                         GoldIncentive = GetRandomValue(true),
@@ -151,7 +151,7 @@ namespace IDT.Boss.FeeService.Api.Data
                     Amount = feeAmount,
                     Percentage = fee
                 },
-                SalesIncentive = new SalesIncentive
+                LoadIncentive = new LoadIncentive
                 {
                     Amount = incentiveAmount,
                     Percentage = incentive

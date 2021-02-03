@@ -15,10 +15,10 @@ namespace IDT.Boss.FeeService.Api.Services
     {
         Task<List<LoadFeeModel>> GetAllLoadFeesByChannelAsync(Channel channel);
         Task<List<FeeModel>> GetAllDefaultFeesByChannelAsync(Channel channel);
-        
+
         Task<List<DistributorFeeModel>> GetAllByDistributorAsync(int distributorId);
         Task<List<RetailerFeeModel>> GetAllByRetailerAsync(int retailerId);
-        
+
         Task<FeeModel> UpdateDefaultLoadFeeAsync(Channel channel, UpdateLoadFeeModel model);
         Task<FeeModel> UpdateDefaultIncentiveAsync(Channel channel, UpdateDefaultIncentiveModel model);
 
@@ -27,7 +27,7 @@ namespace IDT.Boss.FeeService.Api.Services
 
         Task DeleteDistributorIncentiveAsync(int distributorId, DeleteDistributorIncentiveModel model);
         Task DeleteRetailerIncentiveAsync(int retailerId, DeleteRetailerIncentiveModel model);
-        
+
         Task<Fee> GetDistributorFeeAsync(GetDistributorFeeQuery query);
         Task<Fee> GetRetailerFeeAsync(GetRetailerFeeQuery query);
         Task<Fee> GetFeeAsync(GetFeeQuery query);
@@ -98,7 +98,7 @@ namespace IDT.Boss.FeeService.Api.Services
                 PaymentType = model.PaymentType,
                 CardPaymentNetwork = model.CardPaymentNetwork,
                 DistributorIncentive = model.DistributorIncentive,
-                RetailerIncentive = model.RetailerIncentives
+                RetailerLoadIncentives = model.RetailerIncentives
             };
 
             return Task.FromResult(result);
